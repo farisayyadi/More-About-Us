@@ -1,0 +1,98 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background-color: #ccc;
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #d9d8d4;
+      cursor: pointer;
+      border: none;
+      border-left: 2px solid #ff0000;
+      border-bottom: 1px solid #b5b4b0;
+      transition: all 0.8s;
+
+      &.active-tab {
+        background-color: #9b3692;
+        color: #ffff;
+        position: relative;
+        z-index: 1;
+      }
+      &.active-tab::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        right: -5px;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: #9b3692;
+        transform: rotate(45deg);
+        z-index: -1;
+      }
+    }
+  }
+
+  .content {
+    width: 70%;
+    padding: 10px 15px;
+    text-align: left;
+    animation: slide-right 0.8s ease 1;
+
+    p {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    h4 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-10rem);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tabs {
+    flex-direction: column;
+
+    .buttons {
+      width: 100%;
+
+      button {
+        border-left: unset;
+
+        &.active-tab::after {
+          right: calc(50% - 1.5%);
+          bottom: -10px;
+          top: auto;
+        }
+      }
+    }
+    .content {
+      animation: slide-bottom 0.8s ease 1;
+    }
+  }
+  @keyframes slide-bottom {
+    0% {
+      transform: translateY(-10rem);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
